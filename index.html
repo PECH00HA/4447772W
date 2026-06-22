@@ -111,6 +111,165 @@
         .stock-badge.out {
             background: #e74c3c;
         }
+
+        /* ── ORDER STATUS TRACKER ── */
+        .status-stepper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 10px 0 6px;
+        }
+        .status-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3px;
+            flex: 1;
+            position: relative;
+        }
+        .status-step::after {
+            content: '';
+            position: absolute;
+            top: 12px;
+            left: 55%;
+            width: 90%;
+            height: 2px;
+            background: #ddd;
+            z-index: 0;
+        }
+        .status-step:last-child::after { display: none; }
+        .status-step .s-dot {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            z-index: 1;
+            font-weight: 800;
+        }
+        .status-step.done .s-dot { background: var(--primary); color: white; }
+        .status-step.done::after { background: var(--primary); }
+        .status-step .s-label {
+            font-size: 8px;
+            color: #999;
+            text-align: center;
+            font-weight: 600;
+        }
+        .status-step.done .s-label { color: var(--primary); }
+
+        /* ── REORDER BUTTON ── */
+        .reorder-btn {
+            background: var(--primary-light);
+            color: var(--primary);
+            border: 1.5px solid var(--primary);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 6px;
+        }
+        .reorder-btn:hover { background: var(--primary); color: white; }
+
+        /* ── NOTIFICATION BELL ── */
+        .notif-bell {
+            position: relative;
+            font-size: 20px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 4px;
+        }
+        .notif-dot {
+            position: absolute;
+            top: 0; right: 0;
+            width: 8px; height: 8px;
+            background: #e74c3c;
+            border-radius: 50%;
+            display: none;
+        }
+        .notif-dot.show { display: block; }
+        .notif-panel {
+            position: fixed;
+            top: 56px; right: 0;
+            width: 300px;
+            background: white;
+            border-radius: 0 0 12px 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+            z-index: 998;
+            max-height: 60vh;
+            overflow-y: auto;
+            display: none;
+        }
+        .notif-panel.show { display: block; }
+        .notif-item {
+            padding: 12px 16px;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 13px;
+        }
+        .notif-item .n-time { font-size: 10px; color: #bbb; margin-top: 3px; }
+        .notif-item.unread { background: #fff8f5; border-left: 3px solid var(--primary); }
+        .notif-head {
+            padding: 10px 16px;
+            font-weight: 700;
+            font-size: 14px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .notif-head button {
+            font-size: 11px;
+            color: var(--primary);
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        /* ── EDIT PROFILE / ADDRESSES ── */
+        .modal-tab-bar {
+            display: flex;
+            border-bottom: 2px solid #eee;
+            margin: 0 -16px 14px;
+            padding: 0 16px;
+        }
+        .modal-tab {
+            flex: 1;
+            text-align: center;
+            padding: 8px 0;
+            font-size: 13px;
+            font-weight: 700;
+            color: #999;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            margin-bottom: -2px;
+        }
+        .modal-tab.active { color: var(--primary); border-bottom-color: var(--primary); }
+        .modal-tab-content { display: none; }
+        .modal-tab-content.active { display: block; }
+        .address-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 10px 14px;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1.5px solid #eee;
+            font-size: 13px;
+        }
+        .address-card.default-addr { border-color: var(--primary); background: var(--primary-light); }
+        .addr-actions button {
+            background: none;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            margin-left: 4px;
+        }
         .bottom-nav {
             position: fixed;
             bottom: 0;
@@ -832,7 +991,7 @@
                 transform: translateX(-50%);
                 border-radius: 0 0 12px 12px;
             }
-    
+        }
         /* ── STOCK BADGE ── */
         .stock-badge {
             position: absolute;
@@ -854,12 +1013,164 @@
         .stock-badge.out {
             background: #e74c3c;
         }
-        .bottom-nav {
-                max-width: 800px;
-                left: 50%;
-                transform: translateX(-50%);
-                border-radius: 12px 12px 0 0;
-            }
+
+        /* ── ORDER STATUS TRACKER ── */
+        .status-stepper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 10px 0 6px;
+        }
+        .status-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3px;
+            flex: 1;
+            position: relative;
+        }
+        .status-step::after {
+            content: '';
+            position: absolute;
+            top: 12px;
+            left: 55%;
+            width: 90%;
+            height: 2px;
+            background: #ddd;
+            z-index: 0;
+        }
+        .status-step:last-child::after { display: none; }
+        .status-step .s-dot {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            z-index: 1;
+            font-weight: 800;
+        }
+        .status-step.done .s-dot { background: var(--primary); color: white; }
+        .status-step.done::after { background: var(--primary); }
+        .status-step .s-label {
+            font-size: 8px;
+            color: #999;
+            text-align: center;
+            font-weight: 600;
+        }
+        .status-step.done .s-label { color: var(--primary); }
+
+        /* ── REORDER BUTTON ── */
+        .reorder-btn {
+            background: var(--primary-light);
+            color: var(--primary);
+            border: 1.5px solid var(--primary);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 6px;
+        }
+        .reorder-btn:hover { background: var(--primary); color: white; }
+
+        /* ── NOTIFICATION BELL ── */
+        .notif-bell {
+            position: relative;
+            font-size: 20px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 4px;
+        }
+        .notif-dot {
+            position: absolute;
+            top: 0; right: 0;
+            width: 8px; height: 8px;
+            background: #e74c3c;
+            border-radius: 50%;
+            display: none;
+        }
+        .notif-dot.show { display: block; }
+        .notif-panel {
+            position: fixed;
+            top: 56px; right: 0;
+            width: 300px;
+            background: white;
+            border-radius: 0 0 12px 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+            z-index: 998;
+            max-height: 60vh;
+            overflow-y: auto;
+            display: none;
+        }
+        .notif-panel.show { display: block; }
+        .notif-item {
+            padding: 12px 16px;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 13px;
+        }
+        .notif-item .n-time { font-size: 10px; color: #bbb; margin-top: 3px; }
+        .notif-item.unread { background: #fff8f5; border-left: 3px solid var(--primary); }
+        .notif-head {
+            padding: 10px 16px;
+            font-weight: 700;
+            font-size: 14px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .notif-head button {
+            font-size: 11px;
+            color: var(--primary);
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        /* ── EDIT PROFILE / ADDRESSES ── */
+        .modal-tab-bar {
+            display: flex;
+            border-bottom: 2px solid #eee;
+            margin: 0 -16px 14px;
+            padding: 0 16px;
+        }
+        .modal-tab {
+            flex: 1;
+            text-align: center;
+            padding: 8px 0;
+            font-size: 13px;
+            font-weight: 700;
+            color: #999;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            margin-bottom: -2px;
+        }
+        .modal-tab.active { color: var(--primary); border-bottom-color: var(--primary); }
+        .modal-tab-content { display: none; }
+        .modal-tab-content.active { display: block; }
+        .address-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 10px 14px;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1.5px solid #eee;
+            font-size: 13px;
+        }
+        .address-card.default-addr { border-color: var(--primary); background: var(--primary-light); }
+        .addr-actions button {
+            background: none;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            margin-left: 4px;
         }
         @media (max-width: 400px) {
             .category-grid {
@@ -890,11 +1201,23 @@
         <div class="search-box">
             <input type="text" id="searchInput" placeholder="Search products..." oninput="filterProducts()" />
         </div>
+        <button class="notif-bell" id="notifBell" onclick="toggleNotifPanel()" style="display:none;">
+            🔔<span class="notif-dot" id="notifDot"></span>
+        </button>
         <button class="user-icon" onclick="showUserMenu()" id="headerUserBtn">
             <span id="userIconDefault">👤</span>
-            <img id="userProfilePic" class="profile-pic" style="display:none;" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%23e0e0e0'/%3E%3Ccircle cx='16' cy='12' r='6' fill='%23999'/%3E%3Cellipse cx='16' cy='26' rx='10' ry='7' fill='%23999'/%3E%3C/svg%3E';" />
+            <img id="userProfilePic" class="profile-pic" style="display:none;" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\' viewBox=\'0 0 32 32\'%3E%3Ccircle cx=\'16\' cy=\'16\' r=\'16\' fill=\'%23e0e0e0\'/%3E%3Ccircle cx=\'16\' cy=\'12\' r=\'6\' fill=\'%23999\'/%3E%3Cellipse cx=\'16\' cy=\'26\' rx=\'10\' ry=\'7\' fill=\'%23999\'/%3E%3C/svg%3E';" />
         </button>
     </header>
+
+    <!-- NOTIFICATION PANEL -->
+    <div class="notif-panel" id="notifPanel">
+        <div class="notif-head">
+            🔔 Notifications
+            <button onclick="markAllRead()">Mark all read</button>
+        </div>
+        <div id="notifList"><div class="notif-item">No notifications yet.</div></div>
+    </div>
 
     <!-- PAGES -->
     <main>
@@ -1203,6 +1526,7 @@
                 document.getElementById('loggedInOrders').style.display = 'block';
                 document.getElementById('guestTracking').style.display = 'none';
                 loadOrders();
+                loadNotifications();
                 // Update user menu
                 updateUserMenu();
             } else {
@@ -1301,23 +1625,50 @@
                 db.collection('users').doc(currentUser.uid).get().then(doc => {
                     const data = doc.data() || {};
                     container.innerHTML = `
-                        <div style="text-align:center;">
-                            <img src="${data.photoURL || 'https://via.placeholder.com/80/eee/999?text=User'}" style="width:80px; height:80px; border-radius:50%; object-fit:cover; border:3px solid var(--primary);" />
-                            <h3 style="margin:8px 0 4px;">${data.name || 'User'}</h3>
-                            <p style="color:#999; font-size:14px;">${currentUser.email}</p>
-                            <button class="modal-btn" onclick="closeModal('userMenuModal'); logout()" style="background:#e74c3c;">🚪 Logout</button>
+                        <div class="modal-tab-bar">
+                            <div class="modal-tab active" onclick="switchUserTab('profile', this)">👤 Profile</div>
+                            <div class="modal-tab" onclick="switchUserTab('addresses', this)">📍 Addresses</div>
+                            ${data.role === 'admin' ? '<div class="modal-tab" onclick="switchUserTab(\'addproduct\', this)">➕ Product</div>' : ''}
                         </div>
-                        ${data.role === 'admin' ? `
-                        <hr style="margin:14px 0; border-color:#eee;">
-                        <h3 style="margin-bottom:10px;">➕ Add Product</h3>
-                        <input type="text" id="apTitle" placeholder="Product Title *" style="width:100%;padding:8px;margin-bottom:8px;border:1px solid #ddd;border-radius:8px;" />
-                        <input type="number" id="apPrice" placeholder="Price (Rs.) *" style="width:100%;padding:8px;margin-bottom:8px;border:1px solid #ddd;border-radius:8px;" />
-                        <input type="number" id="apStock" placeholder="Stock Quantity *" min="0" style="width:100%;padding:8px;margin-bottom:8px;border:1px solid #ddd;border-radius:8px;" />
-                        <textarea id="apDesc" placeholder="Description" style="width:100%;padding:8px;margin-bottom:8px;border:1px solid #ddd;border-radius:8px;height:70px;resize:none;"></textarea>
-                        <input type="text" id="apCategory" placeholder="Category" style="width:100%;padding:8px;margin-bottom:8px;border:1px solid #ddd;border-radius:8px;" />
-                        <input type="text" id="apImageUrl" placeholder="Image URL" style="width:100%;padding:8px;margin-bottom:8px;border:1px solid #ddd;border-radius:8px;" />
-                        <button class="modal-btn" onclick="adminAddProduct()" style="width:100%;">✅ Save Product</button>
-                        ` : ''}
+
+                        <!-- PROFILE TAB -->
+                        <div class="modal-tab-content active" id="tab-profile">
+                            <div style="text-align:center; margin-bottom:12px;">
+                                <img id="editProfilePicPreview" src="${data.photoURL || ''}"
+                                    style="width:72px;height:72px;border-radius:50%;object-fit:cover;border:3px solid var(--primary);cursor:pointer;"
+                                    onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 32 32\'%3E%3Ccircle cx=\'16\' cy=\'16\' r=\'16\' fill=\'%23e0e0e0\'/%3E%3Ccircle cx=\'16\' cy=\'12\' r=\'6\' fill=\'%23999\'/%3E%3Cellipse cx=\'16\' cy=\'26\' rx=\'10\' ry=\'7\' fill=\'%23999\'/%3E%3C/svg%3E'"
+                                    onclick="document.getElementById('editPicInput').click()" />
+                                <input type="file" id="editPicInput" accept="image/*" style="display:none;" onchange="previewEditPic(event)" />
+                                <div style="font-size:11px;color:#999;margin-top:4px;">Tap to change photo</div>
+                            </div>
+                            <input type="text" id="editName" value="${data.name || ''}" placeholder="Full Name" style="width:100%;padding:8px;margin-bottom:8px;border:1px solid #ddd;border-radius:8px;" />
+                            <input type="tel" id="editPhone" value="${data.phone || ''}" placeholder="Phone Number" style="width:100%;padding:8px;margin-bottom:8px;border:1px solid #ddd;border-radius:8px;" />
+                            <p style="color:#999;font-size:12px;margin-bottom:10px;">📧 ${currentUser.email}</p>
+                            <button class="modal-btn" onclick="saveProfile()" style="width:100%;margin-bottom:8px;">💾 Save Profile</button>
+                            <button class="modal-btn" onclick="closeModal('userMenuModal'); logout()" style="background:#e74c3c;width:100%;">🚪 Logout</button>
+                        </div>
+
+                        <!-- ADDRESSES TAB -->
+                        <div class="modal-tab-content" id="tab-addresses">
+                            <div id="addressList"><p style="color:#999;font-size:13px;">Loading...</p></div>
+                            <hr style="margin:10px 0;"/>
+                            <p style="font-weight:700;font-size:13px;margin-bottom:6px;">➕ Add New Address</p>
+                            <input type="text" id="newAddrLabel" placeholder="Label (e.g. Home, Office)" style="width:100%;padding:8px;margin-bottom:6px;border:1px solid #ddd;border-radius:8px;" />
+                            <textarea id="newAddrText" placeholder="Full Address" style="width:100%;padding:8px;margin-bottom:6px;border:1px solid #ddd;border-radius:8px;height:60px;resize:none;"></textarea>
+                            <button class="modal-btn" onclick="saveAddress()" style="width:100%;">💾 Save Address</button>
+                        </div>
+
+                        <!-- ADMIN ADD PRODUCT TAB -->
+                        <div class="modal-tab-content" id="tab-addproduct" style="${data.role === 'admin' ? '' : 'display:none;'}">
+                            <p style="font-weight:700;font-size:13px;margin-bottom:10px;">➕ Add New Product</p>
+                            <input type="text" id="apTitle" placeholder="Product Title *" style="width:100%;padding:8px;margin-bottom:8px;border:1px solid #ddd;border-radius:8px;" />
+                            <input type="number" id="apPrice" placeholder="Price (Rs.) *" style="width:100%;padding:8px;margin-bottom:8px;border:1px solid #ddd;border-radius:8px;" />
+                            <input type="number" id="apStock" placeholder="Stock Quantity *" min="0" style="width:100%;padding:8px;margin-bottom:8px;border:1px solid #ddd;border-radius:8px;" />
+                            <textarea id="apDesc" placeholder="Description" style="width:100%;padding:8px;margin-bottom:8px;border:1px solid #ddd;border-radius:8px;height:60px;resize:none;"></textarea>
+                            <input type="text" id="apCategory" placeholder="Category" style="width:100%;padding:8px;margin-bottom:8px;border:1px solid #ddd;border-radius:8px;" />
+                            <input type="text" id="apImageUrl" placeholder="Image URL" style="width:100%;padding:8px;margin-bottom:8px;border:1px solid #ddd;border-radius:8px;" />
+                            <button class="modal-btn" onclick="adminAddProduct()" style="width:100%;">✅ Save Product</button>
+                        </div>
                     `;
                 });
             } else {
@@ -1397,20 +1748,28 @@
             grid.innerHTML = products.map(p => {
                 const ratingData = p.rating || { average: 0, count: 0 };
                 const stars = '⭐'.repeat(Math.round(ratingData.average)) + '☆'.repeat(5 - Math.round(ratingData.average));
+                let stockBadge = '';
+                if (p.stock !== undefined && p.stock !== null) {
+                    if (p.stock === 0) stockBadge = '<span class="stock-badge out">❌ Out of Stock</span>';
+                    else if (p.stock <= 5) stockBadge = '<span class="stock-badge low">⚠️ ' + p.stock + ' left</span>';
+                    else stockBadge = '<span class="stock-badge">✅ ' + p.stock + ' in stock</span>';
+                }
+                const outOfStock = p.stock !== undefined && p.stock !== null && p.stock <= 0;
+                const btnStyle = outOfStock ? 'style="background:#ccc;cursor:not-allowed;"' : '';
+                const btnDisabled = outOfStock ? 'disabled' : '';
+                const btnText = outOfStock ? '❌ Out of Stock' : '🛒 Add to Cart';
                 return `
                     <div class="product-card" onclick="openProductDetail('${p.id}')">
                         <div class="img-wrap">
                             <img src="${p.images && p.images[0] ? p.images[0] : p.imageUrl || 'https://via.placeholder.com/300x200/eee/999?text=No+Image'}" alt="${p.title}" loading="lazy" onerror="this.src='https://via.placeholder.com/300x200/eee/999?text=No+Image'" />
-                            ${p.stock !== undefined && p.stock !== null
-                                ? `<span class="stock-badge ${p.stock === 0 ? 'out' : p.stock <= 5 ? 'low' : ''}">${p.stock === 0 ? '❌ Out of Stock' : p.stock <= 5 ? '⚠️ ' + p.stock + ' left' : '✅ ' + p.stock + ' in stock'}</span>`
-                                : ''}
+                            ${stockBadge}
                         </div>
                         <div class="info">
                             <div class="title">${p.title}</div>
                             <div class="price">Rs. ${p.price.toLocaleString()}</div>
                             <div class="location">📍 ${p.location || 'Unknown'}</div>
                             <div class="rating">${stars} (${ratingData.count})</div>
-                            <button class="add-btn" onclick="event.stopPropagation(); addToCart('${p.id}')">🛒 Add to Cart</button>
+                            <button class="add-btn" onclick="event.stopPropagation(); addToCart('${p.id}')" ${btnStyle} ${btnDisabled}>${btnText}</button>
                         </div>
                     </div>
                 `;
@@ -1589,6 +1948,9 @@
         window.addToCart = (id) => {
             const p = allProducts.find(x => x.id === id);
             if (!p) return;
+            if (p.stock !== undefined && p.stock !== null && p.stock <= 0) {
+                showToast('❌ Out of Stock!'); return;
+            }
             const exist = cart.find(x => x.id === id);
             if (exist) exist.qty += 1;
             else cart.push({ ...p, qty: 1 });
@@ -1696,6 +2058,26 @@
 
                 const orderRef = await db.collection('orders').add(orderData);
 
+                // Stock auto-decrease
+                const batch = db.batch();
+                for (const item of cart) {
+                    if (item.id) {
+                        const pRef = db.collection('products').doc(item.id);
+                        batch.update(pRef, { stock: firebase.firestore.FieldValue.increment(-item.qty) });
+                    }
+                }
+                await batch.commit().catch(e => console.error('Stock update error:', e));
+
+                // Save notification for user
+                if (currentUser) {
+                    await db.collection('users').doc(currentUser.uid).collection('notifications').add({
+                        message: `✅ Order #${orderRef.id.slice(-6)} placed! We will confirm soon.`,
+                        read: false,
+                        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                    });
+                    loadNotifications();
+                }
+
                 cart = [];
                 localStorage.removeItem('cart');
                 if (currentUser) {
@@ -1754,14 +2136,17 @@ ${currentUser ? '✅ Registered' : '👤 Guest'}`;
                         60 * 60 * 1000) > new Date();
                     html += `
                         <div class="order-card">
-                            <div style="font-weight:700;">🆔 #${o.id.slice(-6)} ${o.isGuest ? '<span class="guest-badge">Guest</span>' : ''}</div>
-                            <div style="font-size:13px; color:#444; margin:6px 0;">${o.items.map(i => `${i.title} x${i.qty}`).join(', ')}</div>
-                            <div style="font-weight:800; color:var(--primary);">Total: Rs. ${o.total.toLocaleString()}</div>
-                            <div><span class="order-status">${(o.status || 'pending').toUpperCase()}</span></div>
-                            <div style="font-size:11px; color:#999; margin-top:6px;">Deliver to: ${o.buyerName}, ${o.buyerPhone}, ${o.buyerAddress}, ${o.buyerCity}</div>
+                            <div style="font-weight:700; font-size:15px;">🆔 #${o.id.slice(-6)}</div>
+                            <div style="font-size:12px; color:#666; margin:4px 0;">${o.items.map(i => `${i.title} x${i.qty}`).join(' · ')}</div>
+                            <div style="font-weight:800; color:var(--primary); margin-bottom:6px;">Rs. ${o.total.toLocaleString()}</div>
+                            ${buildStatusStepper(o.status)}
+                            <div style="font-size:11px; color:#999; margin-top:6px;">📍 ${o.buyerName} · ${o.buyerPhone}</div>
                             <div style="font-size:10px; color:#bbb;">${o.createdAt?.toDate?.()?.toLocaleString() || 'Just now'}</div>
-                            ${canCancel ? `<button class="cancel-btn" onclick="cancelOrder('${o.id}')">❌ Cancel Order</button>` : ''}
-                            ${o.status === 'cancelled' ? '<span style="color:#e74c3c; font-weight:700;">Cancelled</span>' : ''}
+                            <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:8px;">
+                                ${canCancel && o.status !== 'cancelled' ? `<button class="cancel-btn" onclick="cancelOrder('${o.id}')">❌ Cancel</button>` : ''}
+                                ${o.status === 'cancelled' ? '<span style="color:#e74c3c; font-weight:700; font-size:12px;">❌ Cancelled</span>' : ''}
+                                <button class="reorder-btn" onclick="reorder('${o.id}')">🔄 Reorder</button>
+                            </div>
                         </div>
                     `;
                 });
@@ -1779,6 +2164,14 @@ ${currentUser ? '✅ Registered' : '👤 Guest'}`;
                     status: 'cancelled',
                     cancelledAt: firebase.firestore.FieldValue.serverTimestamp()
                 });
+                if (currentUser) {
+                    await db.collection('users').doc(currentUser.uid).collection('notifications').add({
+                        message: `❌ Order #${id.slice(-6)} has been cancelled.`,
+                        read: false,
+                        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                    });
+                    loadNotifications();
+                }
                 showToast('Order cancelled.');
                 loadOrders();
             } catch (e) {
@@ -1876,6 +2269,230 @@ ${currentUser ? '✅ Registered' : '👤 Guest'}`;
         navigateTo('home');
         updateBadges();
         console.log('🚀 MyMart Client - Complete');
+
+
+        // ============================================================
+        // HELPER: Status Stepper
+        // ============================================================
+        function buildStatusStepper(status) {
+            const steps = [
+                { key: 'pending',    label: 'Placed',    icon: '📋' },
+                { key: 'confirmed',  label: 'Confirmed', icon: '✅' },
+                { key: 'dispatched', label: 'Shipped',   icon: '🚚' },
+                { key: 'delivered',  label: 'Delivered', icon: '🏠' },
+            ];
+            if (status === 'cancelled') {
+                return '<div style="color:#e74c3c;font-size:12px;font-weight:700;">❌ Order Cancelled</div>';
+            }
+            const order = steps.map(s => s.key);
+            const curIdx = order.indexOf(status);
+            return '<div class="status-stepper">' + steps.map((s, i) => `
+                <div class="status-step ${i <= curIdx ? 'done' : ''}">
+                    <div class="s-dot">${s.icon}</div>
+                    <div class="s-label">${s.label}</div>
+                </div>`).join('') + '</div>';
+        }
+
+        // ============================================================
+        // REORDER
+        // ============================================================
+        window.reorder = async (orderId) => {
+            try {
+                const doc = await db.collection('orders').doc(orderId).get();
+                if (!doc.exists) { showToast('Order not found'); return; }
+                const o = doc.data();
+                for (const item of o.items) {
+                    const p = allProducts.find(x => x.id === item.productId);
+                    if (p) {
+                        const exist = cart.find(x => x.id === p.id);
+                        if (exist) exist.qty += item.qty;
+                        else cart.push({ ...p, qty: item.qty });
+                    }
+                }
+                localStorage.setItem('cart', JSON.stringify(cart));
+                if (currentUser) db.collection('carts').doc(currentUser.uid).set({ items: cart }).catch(() => {});
+                updateBadges();
+                renderCart();
+                navigateTo('cart');
+                showToast('🔄 Items added to cart!');
+            } catch(e) { showToast('Error: ' + e.message); }
+        };
+
+        // ============================================================
+        // NOTIFICATIONS
+        // ============================================================
+        let notifications = [];
+
+        async function loadNotifications() {
+            if (!currentUser) return;
+            document.getElementById('notifBell').style.display = 'block';
+            try {
+                const snap = await db.collection('users').doc(currentUser.uid)
+                    .collection('notifications').orderBy('createdAt', 'desc').limit(20).get();
+                notifications = [];
+                snap.forEach(d => notifications.push({ id: d.id, ...d.data() }));
+                renderNotifPanel();
+                const unread = notifications.filter(n => !n.read).length;
+                document.getElementById('notifDot').className = 'notif-dot' + (unread > 0 ? ' show' : '');
+            } catch(e) { console.error('Notif error:', e); }
+        }
+
+        function renderNotifPanel() {
+            const list = document.getElementById('notifList');
+            if (!notifications.length) {
+                list.innerHTML = '<div class="notif-item">No notifications yet.</div>';
+                return;
+            }
+            list.innerHTML = notifications.map(n => `
+                <div class="notif-item ${n.read ? '' : 'unread'}">
+                    ${n.message}
+                    <div class="n-time">${n.createdAt?.toDate?.()?.toLocaleString() || 'Just now'}</div>
+                </div>
+            `).join('');
+        }
+
+        window.toggleNotifPanel = () => {
+            const panel = document.getElementById('notifPanel');
+            panel.classList.toggle('show');
+            if (panel.classList.contains('show')) markAllRead();
+        };
+
+        window.markAllRead = async () => {
+            if (!currentUser || !notifications.length) return;
+            const batch = db.batch();
+            notifications.filter(n => !n.read).forEach(n => {
+                batch.update(db.collection('users').doc(currentUser.uid).collection('notifications').doc(n.id), { read: true });
+            });
+            await batch.commit().catch(() => {});
+            notifications.forEach(n => n.read = true);
+            renderNotifPanel();
+            document.getElementById('notifDot').classList.remove('show');
+        };
+
+        // Close notif panel on outside click
+        document.addEventListener('click', (e) => {
+            const panel = document.getElementById('notifPanel');
+            const bell = document.getElementById('notifBell');
+            if (panel && bell && !panel.contains(e.target) && !bell.contains(e.target)) {
+                panel.classList.remove('show');
+            }
+        });
+
+        // ============================================================
+        // USER MENU TABS
+        // ============================================================
+        window.switchUserTab = (tabId, el) => {
+            document.querySelectorAll('.modal-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.modal-tab-content').forEach(t => t.classList.remove('active'));
+            if (el) el.classList.add('active');
+            const tc = document.getElementById('tab-' + tabId);
+            if (tc) tc.classList.add('active');
+            if (tabId === 'addresses') loadAddresses();
+        };
+
+        // ============================================================
+        // EDIT PROFILE
+        // ============================================================
+        let editPicFile = null;
+
+        window.previewEditPic = (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+            editPicFile = file;
+            const reader = new FileReader();
+            reader.onload = ev => {
+                document.getElementById('editProfilePicPreview').src = ev.target.result;
+            };
+            reader.readAsDataURL(file);
+        };
+
+        window.saveProfile = async () => {
+            if (!currentUser) return;
+            const name  = document.getElementById('editName')?.value.trim();
+            const phone = document.getElementById('editPhone')?.value.trim();
+            try {
+                let photoURL = null;
+                if (editPicFile) {
+                    const ref = storage.ref(`profilePics/${currentUser.uid}`);
+                    await ref.put(editPicFile);
+                    photoURL = await ref.getDownloadURL();
+                    const picEl = document.getElementById('userProfilePic');
+                    if (picEl) { picEl.src = photoURL; picEl.style.display = 'block'; }
+                    document.getElementById('userIconDefault').style.display = 'none';
+                    editPicFile = null;
+                }
+                const update = { name, phone };
+                if (photoURL) update.photoURL = photoURL;
+                await db.collection('users').doc(currentUser.uid).update(update);
+                showToast('✅ Profile updated!');
+                closeModal('userMenuModal');
+            } catch(e) { showToast('❌ Error: ' + e.message); }
+        };
+
+        // ============================================================
+        // SAVED ADDRESSES
+        // ============================================================
+        async function loadAddresses() {
+            if (!currentUser) return;
+            const list = document.getElementById('addressList');
+            if (!list) return;
+            try {
+                const snap = await db.collection('users').doc(currentUser.uid).collection('addresses').get();
+                if (snap.empty) {
+                    list.innerHTML = '<p style="color:#999;font-size:13px;">No saved addresses.</p>';
+                    return;
+                }
+                let html = '';
+                snap.forEach(d => {
+                    const a = d.data();
+                    html += `<div class="address-card ${a.isDefault ? 'default-addr' : ''}">
+                        <div>
+                            <strong>${a.label}</strong><br>
+                            <span style="font-size:12px;color:#666;">${a.text}</span>
+                            ${a.isDefault ? '<br><span style="font-size:10px;color:var(--primary);font-weight:700;">✅ Default</span>' : ''}
+                        </div>
+                        <div class="addr-actions">
+                            ${!a.isDefault ? `<button onclick="setDefaultAddr('${d.id}')" title="Set Default">⭐</button>` : ''}
+                            <button onclick="deleteAddr('${d.id}')" title="Delete">🗑</button>
+                        </div>
+                    </div>`;
+                });
+                list.innerHTML = html;
+            } catch(e) { list.innerHTML = 'Error loading.'; }
+        }
+
+        window.saveAddress = async () => {
+            if (!currentUser) return;
+            const label = document.getElementById('newAddrLabel')?.value.trim();
+            const text  = document.getElementById('newAddrText')?.value.trim();
+            if (!label || !text) { showToast('Label aur address dono likhein'); return; }
+            try {
+                await db.collection('users').doc(currentUser.uid).collection('addresses').add({
+                    label, text, isDefault: false,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+                document.getElementById('newAddrLabel').value = '';
+                document.getElementById('newAddrText').value = '';
+                showToast('✅ Address saved!');
+                loadAddresses();
+            } catch(e) { showToast('❌ ' + e.message); }
+        };
+
+        window.setDefaultAddr = async (id) => {
+            if (!currentUser) return;
+            const batch = db.batch();
+            const snap = await db.collection('users').doc(currentUser.uid).collection('addresses').get();
+            snap.forEach(d => batch.update(d.ref, { isDefault: d.id === id }));
+            await batch.commit();
+            loadAddresses();
+        };
+
+        window.deleteAddr = async (id) => {
+            if (!confirm('Delete this address?')) return;
+            await db.collection('users').doc(currentUser.uid).collection('addresses').doc(id).delete();
+            showToast('Deleted.');
+            loadAddresses();
+        };
 
         // ── ADMIN: ADD PRODUCT ──
         window.adminAddProduct = async function() {
